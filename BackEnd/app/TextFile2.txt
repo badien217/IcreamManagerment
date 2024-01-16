@@ -1,0 +1,11 @@
+﻿Mục đích: Tổ chức thực thi các trường hợp sử dụng doanh nghiệp, phối hợp tương tác giữa các thực thể lĩnh vực và các dịch vụ cơ sở hạ tầng.
+
+Các thành phần chính:
+
+Dịch vụ ứng dụng: Phối hợp các hành động lĩnh vực và thường xử lý giao dịch (ví dụ: CreateOrderService, UpdateCustomerService).
+Bộ xử lý lệnh: Thực hiện các lệnh cụ thể sửa đổi trạng thái ứng dụng (ví dụ: CreateOrderCommandHandler).
+Bộ xử lý truy vấn: Truy xuất thông tin từ lĩnh vực mà không sửa đổi nó (ví dụ: GetCustomerQueryHandler).
+Nguyên tắc chính:
+
+Mô hình rõ ràng các trường hợp sử dụng: Dịch vụ ứng dụng đại diện cho các hoạt động kinh doanh khác nhau.
+Phân tách quan tâm: Phân chia xử lý lệnh (thao tác ghi) và xử lý truy vấn (thao tác đọc).

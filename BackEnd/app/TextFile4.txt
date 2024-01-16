@@ -1,0 +1,12 @@
+﻿Mục đích: Cung cấp triển khai cho các quan tâm ngoại vi như truy cập dữ liệu, gửi tin nhắn và ghi log.
+
+Các thành phần chính:
+
+Repositories (Kho dữ liệu): Thực hiện cơ chế lưu trữ cho các thực thể (ví dụ: EntityFrameworkRepository, InMemoryRepository).
+Cấu hình lưu trữ: Thiết lập các nhà cung cấp truy cập dữ liệu (ví dụ: Entity Framework Core).
+Hàng đợi tin nhắn: Hỗ trợ giao tiếp giữa các thành phần (ví dụ: RabbitMQ).
+Bộ ghi log: Ghi sự kiện và thông tin chẩn đoán (ví dụ: Serilog).
+Nguyên tắc chính:
+
+Đảo ngược phụ thuộc: Các lớp ứng dụng và lĩnh vực phụ thuộc vào các trừu tượng được xác định trong cơ sở hạ tầng.
+Cấu hình thay vì quy ước: Các phụ thuộc ngoại vi được cấu hình một cách rõ ràng để linh hoạt.
