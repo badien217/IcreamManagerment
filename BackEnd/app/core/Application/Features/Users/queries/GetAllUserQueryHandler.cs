@@ -7,7 +7,7 @@ using MediatR;
 using persistence.UnitOfWorks;
 using Domain.Entities;
 
-namespace Application.Features.User.queries
+namespace Application.Features.Users.queries
 {
     public class GetAllUserQueryHandler : IRequestHandler<GetAllUserQueryRequest, IList<GetAllUserQueryReponse>>
     {
@@ -20,6 +20,21 @@ namespace Application.Features.User.queries
         public async Task<IList<GetAllUserQueryReponse>> Handle(GetAllUserQueryRequest request, CancellationToken cancellationToken)
         {
             var user = await _unitOfWork.GetReadReponsitory<User>().GetAllAsync();
+            List<GetAllUserQueryReponse> reponse = new();
+            foreach (var item in user)
+            {
+                reponse.Add(new GetAllUserQueryReponse
+                {
+                    Username = item.Username,
+                    Email = item.Email,
+                    phone = item.phone,
+                    SubcriptionType = item.SubcriptionType,
+                    PaymentStatus = item.PaymentStatus,
+
+                });
+                  
+            }
+             return  reponse;
         }
     }
 }

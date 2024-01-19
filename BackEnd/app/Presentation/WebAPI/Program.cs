@@ -1,5 +1,7 @@
 
+using Microsoft.Data.SqlClient;
 using persistence;
+using Application;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +13,7 @@ builder.Services.AddSwaggerGen();
 var env = builder.Environment;
 builder.Configuration.SetBasePath(env.ContentRootPath).AddJsonFile("appsettings.json", optional: false);
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddApplication();
 var app = builder.Build();
 
 

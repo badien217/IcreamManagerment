@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace persistence.UnitOfWorks
+namespace persistence.Interfaces.UnitOfWorks
 {
     public interface IUnitOfWork : IAsyncDisposable 
     {
