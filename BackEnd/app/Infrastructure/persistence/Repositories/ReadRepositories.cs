@@ -21,14 +21,18 @@ namespace persistence.Repositories
             this._dbContext = dbContext;
         }
         private DbSet<T> table { get => _dbContext.Set<T>(); }
-        public Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null)
+        public async Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null)
         {
-            throw new NotImplementedException();
+            table.AsNoTracking();
+            if(predicate is not null) { table.Where(predicate); }
+            return await table.CountAsync();
+
         }
 
-        public IQueryable<T> Find(Expression<Func<T, bool>> predicate)
+        public async Task<IQueryable<T>> Find(Expression<Func<T, bool>> predicate, bool enableTracking = false)
         {
-            throw new NotImplementedException();
+            if (!enableTracking) table.AsNoTracking();
+            return  table.Where(predicate);
         }
 
         public async Task<IList<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, bool enableTracking = false)

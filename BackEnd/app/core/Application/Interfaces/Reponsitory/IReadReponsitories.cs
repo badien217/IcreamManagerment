@@ -21,10 +21,10 @@ namespace Application.Interfaces.Reponsitory
             Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
             bool enableTracking = false, int curentPage = 1 ,int pageSize = 5);
-        Task<IList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
+        Task<T> GetAsync(Expression<Func<T, bool>> predicate = null,
             Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
             bool enableTracking = false);
-        IQueryable<T> Find(Expression<Func<T, bool>> predicate);
+        Task<IQueryable<T>> Find(Expression<Func<T, bool>> predicate, bool enableTracking = false);
         Task<int> CountAsync(Expression<Func<T, bool>> ?predicate = null );
     }
 }
