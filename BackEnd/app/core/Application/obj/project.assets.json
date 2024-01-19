@@ -1053,6 +1053,19 @@
             "rid": "win"
           }
         }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14"
+        },
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
       }
     }
   },
@@ -2875,10 +2888,16 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.14",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.14"
@@ -2916,7 +2935,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Domain\\Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

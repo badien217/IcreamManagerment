@@ -1054,6 +1054,21 @@
           }
         }
       },
+      "Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "7.0.14",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14"
+        },
+        "compile": {
+          "bin/placeholder/Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Application.dll": {}
+        }
+      },
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -2889,6 +2904,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Application/1.0.0": {
+      "type": "project",
+      "path": "../../core/Application/Application.csproj",
+      "msbuildProject": "../../core/Application/Application.csproj"
+    },
     "Domain/1.0.0": {
       "type": "project",
       "path": "../../core/Domain/Domain.csproj",
@@ -2897,6 +2917,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Application >= 1.0.0",
       "Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.14",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.14",
@@ -2937,6 +2958,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Application\\Application.csproj": {
+              "projectPath": "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Application\\Application.csproj"
+            },
             "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Domain\\Domain.csproj": {
               "projectPath": "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Domain\\Domain.csproj"
             }
