@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using persistence.Context;
 using persistence.Repositories;
+using persistence.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace persistence
             opt.UseSqlServer(configuration.GetConnectionString("DefaultConnect")));
             services.AddScoped(typeof(IReadReponsitories<>), typeof(ReadRepositories<>));
             services.AddScoped(typeof(IWriteReponsitories<>), typeof(WriteReponsitory<>));
-
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }
