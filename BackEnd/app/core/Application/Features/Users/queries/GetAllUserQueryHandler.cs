@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
-using persistence.UnitOfWorks;
+using persistence.Interfaces.UnitOfWorks;
 using Domain.Entities;
 
 namespace Application.Features.Users.queries
