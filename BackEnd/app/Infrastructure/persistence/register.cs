@@ -4,8 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using persistence.Context;
 using persistence.Repositories;
+using persistence.Interfaces.UnitOfWorks;
+
 using persistence.UnitOfWorks;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
