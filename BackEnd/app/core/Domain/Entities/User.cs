@@ -15,10 +15,11 @@ namespace Domain.Entities
         public string phone { get;set; }
         public string SubcriptionType { get;set; }
         public bool PaymentStatus { get;set; }
+        public string Status { get; set; }
         public int RoleId { get;set; }
         public Role role { get;set; }
         public User() { }
-        public User(string username,string password,string email,string Phone, string subcriptionType,bool paymentStatus,int roleId) { 
+        public User(string username,string password,string email,string Phone, string subcriptionType,bool paymentStatus,int roleId,string status) { 
             Username = username;
             Password = password;
             Email = email;
@@ -26,6 +27,7 @@ namespace Domain.Entities
             SubcriptionType = subcriptionType;
             PaymentStatus = paymentStatus;  
             RoleId = roleId;
+            Status = status;
                 
         }
     }

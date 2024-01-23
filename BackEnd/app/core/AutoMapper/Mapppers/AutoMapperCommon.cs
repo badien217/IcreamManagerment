@@ -42,7 +42,7 @@ namespace Mapper.Mapppers
         protected void Config<TDestionation,TSoure>(int depth =5,string? ingore = null)
         {
             var typePair = new TypePair(typeof(TSoure),typeof(TDestionation));
-            if(typePairs.Any(a => a.DestinationType == typePair.DestinationType && a.SourceType == typePair.SourceType) && ingore is  null)
+            if(typePairs.Any(a => a.DestinationType == typePair.DestinationType && a.SourceType == typePair.SourceType) && ingore is null)
             {
                 return;
 }
@@ -51,7 +51,7 @@ namespace Mapper.Mapppers
                 {
                     foreach (var item in typePairs)
                     {
-                        if (ingore is null)
+                        if (ingore is not null)
                             cfg.CreateMap(item.SourceType, item.DestinationType).MaxDepth(depth).ForMember(ingore, x => x.Ignore()).ReverseMap();
                         else
                             cfg.CreateMap(item.SourceType, item.DestinationType).MaxDepth(depth).ReverseMap();
