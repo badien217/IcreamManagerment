@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using persistence;
 using Application;
+using Mapper;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
