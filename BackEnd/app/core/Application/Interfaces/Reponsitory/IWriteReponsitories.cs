@@ -14,6 +14,8 @@ namespace Application.Interfaces.Reponsitory
         Task AddRangerAsync(IList<T> entities);
         Task HardDeleteAsync(T entity);
         Task<T> UpdateAsync(T entity);
+        Task HardDeleteRangerAsync(IList<T> entity);
+
 
     }
 }
