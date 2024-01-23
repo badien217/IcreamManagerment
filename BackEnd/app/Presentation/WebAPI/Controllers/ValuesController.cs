@@ -1,4 +1,6 @@
 ﻿using Application.Features.Users.command.CreateUser;
+using Application.Features.Users.command.DeleteUser;
+using Application.Features.Users.command.UpdateUser;
 using Application.Features.Users.queries.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -23,6 +25,18 @@ namespace WebAPI.Controllers
         }
         [HttpPost] 
         public async Task<IActionResult> CreateUser (CreateUsedCommandRequest requeste)
+        {
+            await mediator.Send(requeste);
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateUser(UpdateUserCommandHandler requeste)
+        {
+            await mediator.Send(requeste);
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(DeleteUserCommandRequest requeste)
         {
             await mediator.Send(requeste);
             return Ok();
