@@ -28,6 +28,11 @@ namespace persistence.Repositories
         {
             await Table.AddRangeAsync(entities);
         }
+        public async Task HardDeleteRangerAsync(IList<T> entity)
+        {
+            await Task.Run(() => { Table.RemoveRange(entity); });
+
+        }
 
         public async Task HardDeleteAsync(T entity)
         {
