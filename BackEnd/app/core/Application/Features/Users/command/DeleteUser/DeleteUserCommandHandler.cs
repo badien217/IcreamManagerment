@@ -19,8 +19,8 @@ namespace Application.Features.Users.command.DeleteUser
         }
         public async Task Handle(DeleteUserCommandRequest request, CancellationToken cancellationToken)
         {
-            var users = await unitOfWork.GetReadReponsitory<User>().GetAsync(x => x.Id == request.Id && x.Status != "huy");
-            users.Status= "huy";
+            var users = await unitOfWork.GetReadReponsitory<User>().GetAsync(x => x.Id == request.Id );
+           
             await unitOfWork.GetWriteReponsitory<User>().UpdateAsync(users);
             await unitOfWork.SaveAsync();
 

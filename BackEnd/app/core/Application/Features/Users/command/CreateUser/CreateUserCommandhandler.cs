@@ -22,7 +22,7 @@ namespace Application.Features.Users.command.CreateUser
         public async System.Threading.Tasks.Task Handle(CreateUsedCommandRequest request, CancellationToken cancellationToken)
         {
             User userCustomer = new(request.Username, request.Password, request.phone, request.Email, request.SubcriptionType,
-                request.PaymentStatus, request.RoleId,request.Status);
+                request.PaymentStatus, request.RoleId);
             await _unitOfWork.GetWriteReponsitory<User>().AddAsync(userCustomer);
             await _unitOfWork.SaveAsync();
             /*if (await _unitOfWork.SaveAsync() > 0)
