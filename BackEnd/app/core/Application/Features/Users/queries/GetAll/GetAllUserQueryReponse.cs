@@ -15,7 +15,7 @@ namespace Application.Features.Users.queries.GetAll
         public string SubcriptionType { get; set; }
         public bool PaymentStatus { get; set; }
         public RoleDto roleId { get;set; }  
-        public string Status { get; set; }
+       
 
     }
 }
