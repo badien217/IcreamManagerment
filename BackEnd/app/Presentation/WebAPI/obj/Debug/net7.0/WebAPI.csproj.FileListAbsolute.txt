@@ -86,3 +86,7 @@ D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net
 D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\Mapper.dll
 D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\Application.pdb
 D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\Mapper.pdb
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\FluentValidation.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\SendGrid.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\StarkbankEcdsa.dll
