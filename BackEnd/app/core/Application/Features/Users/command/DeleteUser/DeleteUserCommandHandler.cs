@@ -10,21 +10,22 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Users.command.DeleteUser
 {
-    public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommandRequest>
+    public class DeleteUserCommandHandler :  IRequestHandler<DeleteUserCommandRequest,Unit>
     {
         public readonly IUnitOfWork unitOfWork;
         public DeleteUserCommandHandler(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task Handle(DeleteUserCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteUserCommandRequest request, CancellationToken cancellationToken)
         {
-            var users = await unitOfWork.GetReadReponsitory<User>().GetAsync(x => x.Id == request.Id );
-           
+            var users = await unitOfWork.GetReadReponsitory<User>().GetAsync(x => x.Id == request.Id && !x.IsDeleted);
+            users.IsDeleted = true;
+
             await unitOfWork.GetWriteReponsitory<User>().UpdateAsync(users);
             await unitOfWork.SaveAsync();
 
-
+            return Unit.Value;
         }
     }
 }

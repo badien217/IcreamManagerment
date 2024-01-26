@@ -18,12 +18,12 @@ namespace Application.Features.Users.command.UpdateUser
         {
             this._unitOfWork = unitOfWork;
             this._autoMapper = autoMapper;
-        }
+        } 
 
         public async Task Handle(UpdateUserCommandReuquest request, CancellationToken cancellationToken)
         {
 
-            var users = await _unitOfWork.GetReadReponsitory<User>().GetAsync(x => x.Id == request.Id );
+            var users = await _unitOfWork.GetReadReponsitory<User>().GetAsync(x => x.Id == request.Id  && !x.IsDeleted);
             var map = _autoMapper.Map<User, UpdateUserCommandReuquest>(request);
             var UserRole = await _unitOfWork.GetReadReponsitory<Role>().GetAsync(x => x.Id == users.Id );
             /*await _unitOfWork.GetWriteReponsitory<Role>().HardDeleteRangerAsync(UserRole);
