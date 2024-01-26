@@ -16,7 +16,7 @@ namespace Application.Features.Users.command.CreateUser
         public string SubcriptionType { get; set; }
         public bool PaymentStatus { get; set; }
         public int RoleId { get; set; }
-        public string Status { get; set; }
+       
 
     }
 }

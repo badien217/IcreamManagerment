@@ -14,8 +14,12 @@ namespace Application.Features.Users.queries.GetAll
         public string phone { get; set; }
         public string SubcriptionType { get; set; }
         public bool PaymentStatus { get; set; }
+<<<<<<< HEAD
         public RoleDto roleId { get;set; }  
        
+=======
+        public RoleDto role { get;set; }  
+>>>>>>> origin/dien
 
     }
 }

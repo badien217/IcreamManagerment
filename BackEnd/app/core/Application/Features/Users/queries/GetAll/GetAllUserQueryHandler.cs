@@ -24,10 +24,10 @@ namespace Application.Features.Users.queries.GetAll
 
         public async Task<IList<GetAllUserQueryReponse>> Handle(GetAllUserQueryRequest request, CancellationToken cancellationToken)
         {
-            var user = await _unitOfWork.GetReadReponsitory<User>().GetAllAsync(include: x => x.Include(b => b.role));
-            _mapper.Map<RoleDto>(new Role() );
+            var users = await _unitOfWork.GetReadReponsitory<User>().GetAllAsync(include: x => x.Include(b => b.role));
+            var rolers = _mapper.Map<RoleDto,Role>(new Role());
             
-            var map = _mapper.Map<GetAllUserQueryReponse, User>(user);
+            var map = _mapper.Map<GetAllUserQueryReponse, User>(users);
             return map;
         }
     }
