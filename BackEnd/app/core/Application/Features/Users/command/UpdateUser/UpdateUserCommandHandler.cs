@@ -32,7 +32,7 @@ namespace Application.Features.Users.command.UpdateUser
             /*await _unitOfWork.GetWriteReponsitory<Role>().HardDeleteRangerAsync(UserRole);
             foreach (var RoleIds in request.RoleId) 
                 await _unitOfWork.GetWriteReponsitory<Role>().AddAsync(new() { Id = RoleIds ,UserID = users.Id});*/
-            await _unitOfWork.GetWriteReponsitory<Book>().UpdateAsync(users);
+            await _unitOfWork.GetWriteReponsitory<User>().UpdateAsync(users);
             await _unitOfWork.SaveAsync();
 
         }

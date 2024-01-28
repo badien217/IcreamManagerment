@@ -16,7 +16,6 @@ namespace Application.Interfaces.Reponsitory
         Task HardDeleteAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task HardDeleteRangerAsync(IList<T> entity);
-        Task AddRangerAsync(Book bookCustomer);
-        Task UpdateAsync(object users);
+       
     }
 }
