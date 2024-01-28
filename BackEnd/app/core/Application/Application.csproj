@@ -34,14 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Flavors\Command\DeleteFlavors\" />
-    <Folder Include="Features\Flavors\Command\UpdateFlavors\" />
-    <Folder Include="Features\IceCreams\" />
-    <Folder Include="Features\IceCreams\" />
-    <Folder Include="Features\Steps\" />
     <Folder Include="Features\Recipes\" />
-    <Folder Include="Features\Steps\" />
     <Folder Include="Features\Recipes\" />
+    <Folder Include="Features\Steps\Command\DeleteSteps\" />
+    <Folder Include="Features\Steps\Command\UpdateSteps\" />
+    <Folder Include="Features\Steps\Queries\" />
   </ItemGroup>
 
 </Project>

@@ -9,5 +9,6 @@ namespace Application.Features.Flavors.Queries.GetAll
 {
     public class GetAllFlavorsRequest : IRequest<IList<GetAllFlavorsReponse>>
     {
+
     }
 }
