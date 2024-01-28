@@ -9,11 +9,13 @@ namespace Domain.Entities
 {
     public class Book : EntityBase, IEntityBase
     {
+        
         public string Title { get; set; }
         public string Author { get; set; }
         public DateTime PublishedDate { get; set; }
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
+        public ICollection<OrderDetail> orderDetails { get; set; }
         public Book() { }
         public Book(string title, string author, DateTime publishedDate, string imageUrl, decimal price)
         {
