@@ -11,7 +11,7 @@ namespace Application.Features.Users.UserRule
 {
     public class UserRules : BaseRule
     {
-        public Task UserTitleMostNotBeSame(IList<User> users ,string requestTitle)
+        public Task UserTitleMostNotBeSame(IList<Book> users ,string requestTitle)
         {
             if (users.Any(x => x.Username == requestTitle)) throw new UserTitleMustNotBeSameException();
             return Task.CompletedTask;

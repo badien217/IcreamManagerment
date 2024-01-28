@@ -23,13 +23,13 @@ namespace Application.Features.Users.command.UpdateUser
         public async Task Handle(UpdateUserCommandReuquest request, CancellationToken cancellationToken)
         {
 
-            var users = await _unitOfWork.GetReadReponsitory<User>().GetAsync(x => x.Id == request.Id  && !x.IsDeleted);
-            var map = _autoMapper.Map<User, UpdateUserCommandReuquest>(request);
+            var users = await _unitOfWork.GetReadReponsitory<Book>().GetAsync(x => x.Id == request.Id  && !x.IsDeleted);
+            var map = _autoMapper.Map<Book, UpdateUserCommandReuquest>(request);
             var UserRole = await _unitOfWork.GetReadReponsitory<Role>().GetAsync(x => x.Id == users.Id );
             /*await _unitOfWork.GetWriteReponsitory<Role>().HardDeleteRangerAsync(UserRole);
             foreach (var RoleIds in request.RoleId) 
                 await _unitOfWork.GetWriteReponsitory<Role>().AddAsync(new() { Id = RoleIds ,UserID = users.Id});*/
-            await _unitOfWork.GetWriteReponsitory<User>().UpdateAsync(users);
+            await _unitOfWork.GetWriteReponsitory<Book>().UpdateAsync(users);
             await _unitOfWork.SaveAsync();
 
         }
