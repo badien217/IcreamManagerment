@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using persistence.Context;
 
@@ -11,9 +12,11 @@ using persistence.Context;
 namespace persistence.Migrations
 {
     [DbContext(typeof(AddDbContexts))]
-    partial class AddDbContextsModelSnapshot : ModelSnapshot
+    [Migration("20240128092432_update2")]
+    partial class update2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,11 +100,16 @@ namespace persistence.Migrations
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Books");
                 });
@@ -451,6 +459,13 @@ namespace persistence.Migrations
                     b.Navigation("role");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Book", b =>
+                {
+                    b.HasOne("Domain.Entities.Role", null)
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId");
+                });
+
             modelBuilder.Entity("Domain.Entities.Flavor", b =>
                 {
                     b.HasOne("Domain.Entities.IceCream", "iceCream")
@@ -476,7 +491,7 @@ namespace persistence.Migrations
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
                     b.HasOne("Domain.Entities.Role", "role")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
