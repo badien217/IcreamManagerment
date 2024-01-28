@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace persistence.Configuration
 {
-    public class UserConfiguration : IEntityTypeConfiguration<Book>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Book> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.Property(x => x.Username).HasMaxLength(64);
             builder.Property(x => x.Password).HasMaxLength(64);
