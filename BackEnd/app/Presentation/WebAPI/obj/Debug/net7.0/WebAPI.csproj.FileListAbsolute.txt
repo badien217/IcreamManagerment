@@ -174,3 +174,7 @@ C:\Users\Laptop MSI\EProject_team_3\BackEnd\app\Presentation\WebAPI\obj\Debug\ne
 C:\Users\Laptop MSI\EProject_team_3\BackEnd\app\Presentation\WebAPI\obj\Debug\net7.0\WebAPI.pdb
 C:\Users\Laptop MSI\EProject_team_3\BackEnd\app\Presentation\WebAPI\obj\Debug\net7.0\WebAPI.genruntimeconfig.cache
 C:\Users\Laptop MSI\EProject_team_3\BackEnd\app\Presentation\WebAPI\obj\Debug\net7.0\ref\WebAPI.dll
+C:\Users\Laptop MSI\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\Laptop MSI\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Laptop MSI\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\SendGrid.dll
+C:\Users\Laptop MSI\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\StarkbankEcdsa.dll
