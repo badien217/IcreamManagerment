@@ -24,4 +24,13 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Feedbacks\FeedbacksRule\" />
+    <Folder Include="Features\Feedbacks\Exceptions\" />
+    <Folder Include="Features\IceCreams\" />
+    <Folder Include="Features\Flavors\" />
+    <Folder Include="Features\Steps\" />
+    <Folder Include="Features\Recipes\" />
+  </ItemGroup>
+
 </Project>

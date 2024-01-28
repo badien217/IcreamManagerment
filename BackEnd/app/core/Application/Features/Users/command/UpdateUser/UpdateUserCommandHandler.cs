@@ -24,8 +24,11 @@ namespace Application.Features.Users.command.UpdateUser
         {
 
             var users = await _unitOfWork.GetReadReponsitory<User>().GetAsync(x => x.Id == request.Id  && !x.IsDeleted);
+            
+            
             var map = _autoMapper.Map<User, UpdateUserCommandReuquest>(request);
             var UserRole = await _unitOfWork.GetReadReponsitory<Role>().GetAsync(x => x.Id == users.Id );
+            
             /*await _unitOfWork.GetWriteReponsitory<Role>().HardDeleteRangerAsync(UserRole);
             foreach (var RoleIds in request.RoleId) 
                 await _unitOfWork.GetWriteReponsitory<Role>().AddAsync(new() { Id = RoleIds ,UserID = users.Id});*/

@@ -25,7 +25,7 @@ namespace Application.Features.Books.queries.GetAll
 
         public async Task<IList<GetAllBookQueryReponse>> Handle(GetAllBookQueryRequest request, CancellationToken cancellationToken)
         {
-            var books = await _unitOfWork.GetReadReponsitory<Book>().GetAllAsync(include: x => x.Include(b => b.role));
+            var books = await _unitOfWork.GetReadReponsitory<Book>().GetAllAsync();
             var rolers = _mapper.Map<RoleDto, Role>(new Role());
 
             var map = _mapper.Map<GetAllBookQueryReponse, Book>(books);

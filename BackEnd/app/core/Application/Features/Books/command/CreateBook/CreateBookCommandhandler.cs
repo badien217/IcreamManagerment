@@ -22,7 +22,7 @@ namespace Application.Features.Books.command.CreateBook
         public async System.Threading.Tasks.Task Handle(CreateBookCommandRequest request, CancellationToken cancellationToken)
         {
             Book bookCustomer = new(request.Title, request.Author, request.PublishedDate, request.ImageUrl, request.Price);
-            await _unitOfWork.GetWriteReponsitory<Book>().AddRangerAsync(bookCustomer);
+            //await _unitOfWork.GetWriteReponsitory<Book>().AddRangerAsync();
             await _unitOfWork.SaveAsync();
         }
     }
