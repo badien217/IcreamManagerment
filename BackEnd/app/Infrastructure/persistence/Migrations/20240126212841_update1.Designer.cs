@@ -12,8 +12,8 @@ using persistence.Context;
 namespace persistence.Migrations
 {
     [DbContext(typeof(AddDbContexts))]
-    [Migration("20240124101154_updatese")]
-    partial class updatese
+    [Migration("20240126212841_update1")]
+    partial class update1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,9 +79,6 @@ namespace persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("OrderDetailId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -93,8 +90,6 @@ namespace persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderDetailId");
 
                     b.ToTable("Books");
                 });
@@ -231,9 +226,6 @@ namespace persistence.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("OrderDetailId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PaymentOption")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -246,8 +238,6 @@ namespace persistence.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderDetailId");
 
                     b.ToTable("Order");
                 });
@@ -276,6 +266,10 @@ namespace persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetail");
                 });
@@ -432,13 +426,6 @@ namespace persistence.Migrations
                     b.Navigation("role");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Book", b =>
-                {
-                    b.HasOne("Domain.Entities.OrderDetail", null)
-                        .WithMany("Books")
-                        .HasForeignKey("OrderDetailId");
-                });
-
             modelBuilder.Entity("Domain.Entities.Flavor", b =>
                 {
                     b.HasOne("Domain.Entities.IceCream", "iceCream")
@@ -450,11 +437,21 @@ namespace persistence.Migrations
                     b.Navigation("iceCream");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Order", b =>
+            modelBuilder.Entity("Domain.Entities.OrderDetail", b =>
                 {
-                    b.HasOne("Domain.Entities.OrderDetail", null)
-                        .WithMany("orders")
-                        .HasForeignKey("OrderDetailId");
+                    b.HasOne("Domain.Entities.Book", null)
+                        .WithMany("orderDetails")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Order", "orders")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("orders");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -468,16 +465,14 @@ namespace persistence.Migrations
                     b.Navigation("role");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Book", b =>
+                {
+                    b.Navigation("orderDetails");
+                });
+
             modelBuilder.Entity("Domain.Entities.IceCream", b =>
                 {
                     b.Navigation("Flavor");
-                });
-
-            modelBuilder.Entity("Domain.Entities.OrderDetail", b =>
-                {
-                    b.Navigation("Books");
-
-                    b.Navigation("orders");
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>

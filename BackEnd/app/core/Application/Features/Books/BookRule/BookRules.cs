@@ -14,7 +14,7 @@ namespace Application.Features.Books.BookRule
         public Task BookTitleMostNotBeSame(IList<Book> book, string requestTitle)
         {
 
-            if (book.Any(x => x.Username == requestTitle)) throw new UserTitleMustNotBeSameException();
+            if (book.Any(x => x.Author == requestTitle)) throw new UserTitleMustNotBeSameException();
             return Task.CompletedTask;
         }
     }

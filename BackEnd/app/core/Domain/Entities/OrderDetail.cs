@@ -11,8 +11,8 @@ namespace Domain.Entities
     {
         public int OrderId { get; set; }
        
-        public ICollection<Order> orders { get; set; }
-        public int BookId { get;set; }
+        public Order orders { get; set; }
+        public int BookId { get; set; }
         public ICollection<Book> Books { get; set; }
         public int Quatity { get; set; }
         
