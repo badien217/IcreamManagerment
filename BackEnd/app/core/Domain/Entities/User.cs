@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class User : EntityBase, IEntityBase
+    public class Book : EntityBase, IEntityBase
     {
         public string Username { get;set; }
         public string Password { get;set; }
@@ -18,8 +18,8 @@ namespace Domain.Entities
        
         public int RoleId { get;set; }
         public Role role { get;set; }
-        public User() { }
-        public User(string username,string password,string email,string Phone, string subcriptionType,bool paymentStatus,int roleId) { 
+        public Book() { }
+        public Book(string username,string password,string email,string Phone, string subcriptionType,bool paymentStatus,int roleId) { 
             Username = username;
             Password = password;
             Email = email;
