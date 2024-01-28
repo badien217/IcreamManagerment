@@ -11,7 +11,7 @@ namespace Domain.Entities
     {
         public string name { get; set; }  
         public ICollection<Admin> Admin { get; set; }
-        public ICollection<Book> Users { get; set; }
+        public ICollection<User> Users { get; set; }
         public Role() { }
         public Role(string name)
         {
