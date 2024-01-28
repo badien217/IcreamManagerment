@@ -8,10 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "Domain/1.0.0": {
         "dependencies": {
-<<<<<<< HEAD
-=======
           "FluentValidation": "11.9.0",
->>>>>>> origin/dien
           "MediatR": "12.2.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.14",

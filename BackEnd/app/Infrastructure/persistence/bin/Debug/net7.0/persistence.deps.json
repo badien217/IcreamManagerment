@@ -10,10 +10,7 @@
         "dependencies": {
           "Application": "1.0.0",
           "Domain": "1.0.0",
-<<<<<<< HEAD
-=======
           "FluentValidation": "11.9.0",
->>>>>>> origin/dien
           "MediatR": "12.2.0",
           "Microsoft.EntityFrameworkCore": "7.0.14",
           "Microsoft.EntityFrameworkCore.Design": "7.0.14",
@@ -96,8 +93,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Features": "2.2.0",
@@ -121,7 +116,6 @@
           }
         }
       },
->>>>>>> origin/dien
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "runtime": {
           "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
@@ -705,11 +699,6 @@
       "Application/1.0.0": {
         "dependencies": {
           "Domain": "1.0.0",
-<<<<<<< HEAD
-          "MediatR": "12.2.0",
-          "Microsoft.EntityFrameworkCore": "7.0.14",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14"
-=======
           "FluentValidation": "11.9.0",
           "MediatR": "12.2.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -717,7 +706,6 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14",
           "Newtonsoft.Json": "13.0.3",
           "SendGrid": "9.29.1"
->>>>>>> origin/dien
         },
         "runtime": {
           "Application.dll": {}
@@ -725,16 +713,11 @@
       },
       "Domain/1.0.0": {
         "dependencies": {
-<<<<<<< HEAD
-          "MediatR": "12.2.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14"
-=======
           "FluentValidation": "11.9.0",
           "MediatR": "12.2.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14",
           "Newtonsoft.Json": "13.0.3",
           "SendGrid": "9.29.1"
->>>>>>> origin/dien
         },
         "runtime": {
           "Domain.dll": {}
@@ -790,8 +773,6 @@
       "path": "mediatr.contracts/2.0.1",
       "hashPath": "mediatr.contracts.2.0.1.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -806,7 +787,6 @@
       "path": "microsoft.aspnetcore.http.features/2.2.0",
       "hashPath": "microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512"
     },
->>>>>>> origin/dien
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",
       "serviceable": true,
