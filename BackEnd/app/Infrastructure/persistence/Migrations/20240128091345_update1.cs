@@ -12,25 +12,6 @@ namespace persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Books",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Books", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Feedbacks",
                 columns: table => new
                 {
@@ -178,12 +159,6 @@ namespace persistence.Migrations
                 {
                     table.PrimaryKey("PK_OrderDetail", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetail_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_OrderDetail_Order_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Order",
@@ -215,6 +190,31 @@ namespace persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Books",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Books", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Books_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -241,20 +241,49 @@ namespace persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "BookOrderDetail",
+                columns: table => new
+                {
+                    BooksId = table.Column<int>(type: "int", nullable: false),
+                    orderDetailsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookOrderDetail", x => new { x.BooksId, x.orderDetailsId });
+                    table.ForeignKey(
+                        name: "FK_BookOrderDetail_Books_BooksId",
+                        column: x => x.BooksId,
+                        principalTable: "Books",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BookOrderDetail_OrderDetail_orderDetailsId",
+                        column: x => x.orderDetailsId,
+                        principalTable: "OrderDetail",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_RoleId",
                 table: "Admins",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BookOrderDetail_orderDetailsId",
+                table: "BookOrderDetail",
+                column: "orderDetailsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Books_RoleId",
+                table: "Books",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Flavor_iceCreamId",
                 table: "Flavor",
                 column: "iceCreamId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderDetail_BookId",
-                table: "OrderDetail",
-                column: "BookId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetail_OrderId",
@@ -274,13 +303,13 @@ namespace persistence.Migrations
                 name: "Admins");
 
             migrationBuilder.DropTable(
+                name: "BookOrderDetail");
+
+            migrationBuilder.DropTable(
                 name: "Feedbacks");
 
             migrationBuilder.DropTable(
                 name: "Flavor");
-
-            migrationBuilder.DropTable(
-                name: "OrderDetail");
 
             migrationBuilder.DropTable(
                 name: "Recipes");
@@ -292,16 +321,19 @@ namespace persistence.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "IceCreams");
-
-            migrationBuilder.DropTable(
                 name: "Books");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "OrderDetail");
+
+            migrationBuilder.DropTable(
+                name: "IceCreams");
 
             migrationBuilder.DropTable(
                 name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "Order");
         }
     }
 }

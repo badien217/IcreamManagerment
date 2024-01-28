@@ -97,11 +97,16 @@ namespace persistence.Migrations
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Books");
                 });
@@ -451,6 +456,13 @@ namespace persistence.Migrations
                     b.Navigation("role");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Book", b =>
+                {
+                    b.HasOne("Domain.Entities.Role", null)
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId");
+                });
+
             modelBuilder.Entity("Domain.Entities.Flavor", b =>
                 {
                     b.HasOne("Domain.Entities.IceCream", "iceCream")
@@ -476,7 +488,7 @@ namespace persistence.Migrations
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
                     b.HasOne("Domain.Entities.Role", "role")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
