@@ -33,12 +33,4 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Recipes\" />
-    <Folder Include="Features\Recipes\" />
-    <Folder Include="Features\Steps\Command\DeleteSteps\" />
-    <Folder Include="Features\Steps\Command\UpdateSteps\" />
-    <Folder Include="Features\Steps\Queries\" />
-  </ItemGroup>
-
 </Project>
