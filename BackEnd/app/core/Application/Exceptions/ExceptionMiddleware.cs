@@ -38,7 +38,7 @@ namespace Application.Exceptions
 
             List<string> errors = new()
             {
-                $"Hata Mesajı : {exception.Message}"
+                $"ERROR : {exception.Message}"
             };
 
             return httpContext.Response.WriteAsync(new ExceptionModel
