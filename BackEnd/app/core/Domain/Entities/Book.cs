@@ -15,7 +15,6 @@ namespace Domain.Entities
         public DateTime PublishedDate { get; set; }
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
-        public ICollection<OrderDetail> orderDetails { get; set; }
         public Book() { }
         public Book(string title, string author, DateTime publishedDate, string imageUrl, decimal price)
         {

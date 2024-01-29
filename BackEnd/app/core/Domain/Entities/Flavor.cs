@@ -11,7 +11,6 @@ namespace Domain.Entities
     {
         public string Name { get; set; }
         public string ImageUrl { get; set; }
-        public IceCream iceCream { get; set; }
         public Flavor() { }
         public Flavor(string name, string imageUrl) { }
     }
