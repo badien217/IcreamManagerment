@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Books.Excaption
+namespace Application.Features.Books.Exception
 {
     public class BookTitleMustNotBeSameException : BaseException
     {
-        public BookTitleMustNotBeSameException() : base("exception!!!") { }
+        
+        public BookTitleMustNotBeSameException() : base("book đã tồn tại!!") { }
     }
 }
