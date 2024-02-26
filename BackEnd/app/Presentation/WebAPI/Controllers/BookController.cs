@@ -1,61 +1,60 @@
-﻿
-using Application.Features.Feedbacks.Queries.GetAll;
+﻿using Application.Features.Books.command.CreateBook;
+using Application.Features.Books.command.DeleteBook;
+using Application.Features.Books.command.UpdateBook;
+using Application.Features.Books.queries.GetAll;
 using Application.Features.Feedbacks.Command.CreateFeedbacks;
-using Application.Features.Feedbacks.Command.UpdateFeedbacks;
 using Application.Features.Feedbacks.Command.DeleteFeedbacks;
+using Application.Features.Feedbacks.Command.UpdateFeedbacks;
 using Application.Features.Feedbacks.Queries.GetById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Application.Features.Auths.Command.Register;
-using Application.Features.Books.queries.GetAll;
-using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class BookController : ControllerBase
     {
-        private readonly IMediator mediator;
-        public ValuesController(IMediator mediator)
+        public readonly IMediator mediator;
+        public BookController(IMediator mediator)
         {
             this.mediator = mediator;
         }
         [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> GetAllUser()
+        
+        public async Task<IActionResult> GetAllBook()
         {
             var reponse = await mediator.Send(new GetAllBookQueryRequest());
             return Ok(reponse);
         }
 
-        [HttpPost] 
-        public async Task<IActionResult> CreateUser (CreateFeedbackCommandRequest requeste)
+        [HttpPost]
+        public async Task<IActionResult> CreateBook(CreateBookCommandRequest requeste)
         {
             await mediator.Send(requeste);
             return Ok();
         }
 
-       
+
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(UpdateFeedbackCommandRRequest requeste)
+        public async Task<IActionResult> UpdateBook(UpdateBookCommandReuquest requeste)
         {
             await mediator.Send(requeste);
             return Ok();
         }
         [HttpPost]
-        public async Task<IActionResult> DeleteUser(DeleteFeedbackCommandRequest requeste)
+        public async Task<IActionResult> DeleteUser(DeleteBookCommandRequest requeste)
         {
             await mediator.Send(requeste);
             return Ok();
         }
-        [HttpGet]
+   /*     [HttpGet]
         public async Task<IActionResult> GetAllUserbyid()
         {
             var reponse = await mediator.Send(new GetFeebbackByIDQueriesRequest());
             return Ok(reponse);
-        }
-
+        }*/
     }
 }
