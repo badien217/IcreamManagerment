@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Dtos
+namespace Application.Features.Carts.Command.CreateCart
 {
-    public class BookDTO
+    public class CreateCartValidator
     {
-        public int Id {  get; set; }    
-        public string title { get; set; }
     }
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Dtos
+namespace Application.Features.Books.queries.GetTotal
 {
-    public class BookDTO
+    public class GetTotalBookReponse
     {
-        public int Id {  get; set; }    
-        public string title { get; set; }
+        public int total { get; set; }
     }
 }
