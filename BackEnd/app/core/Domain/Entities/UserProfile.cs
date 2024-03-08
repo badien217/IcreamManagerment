@@ -15,6 +15,8 @@ namespace Domain.Entities
         public string Phone { get;set; }
         public string subscriptionType { get; set; }
         public string paymentOption { get; set; }
+        public string paymentStatus { get; set; }
+        public string avatar { get;set; }
         public User user { get; set; }
     }
 }
