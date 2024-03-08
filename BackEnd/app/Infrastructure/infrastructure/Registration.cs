@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces.Token;
+
 using infrastructure.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@ namespace infrastructure
         {
             services.Configure<TokenSetting>(configuration.GetSection("JWT"));
             services.AddTransient<ITokenServices, TokenServices>();
+            
 /*
             services.Configure<RedisCacheSettings>(configuration.GetSection("RedisCacheSettings"));
             services.AddTransient<IRedisCacheService, RedisCacheService>();*/
