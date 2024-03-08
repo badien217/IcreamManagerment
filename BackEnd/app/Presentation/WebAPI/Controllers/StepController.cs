@@ -6,6 +6,7 @@ using Application.Features.Steps.Command.DeleteSteps;
 using Application.Features.Steps.Command.UpdateSteps;
 using Application.Features.Steps.Queries.GetAll;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,6 +42,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteUser(DeleteStepsCommandRequest requeste)
         {
             await mediator.Send(requeste);

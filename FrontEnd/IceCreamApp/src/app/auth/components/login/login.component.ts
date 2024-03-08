@@ -6,6 +6,7 @@ import { Login } from '../../interfaces/login';
 import { JwtAuth } from '../../interfaces/jwt-auth';
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, FormGroupName, Validators } from '@angular/forms';
+import { RefreshToken } from '../../interfaces/RefreshToken';
 
 
 @Component({
@@ -28,6 +29,10 @@ export class LoginComponent {
     error: undefined,
     role :  []
   };
+  RefreshTokens : RefreshToken = {
+    accesstoken : '',
+    refreshToken : ''
+  }
   responsedata : any;
   faHome = faHome;
   faEyeSlash = faEyeSlash;
@@ -43,30 +48,22 @@ export class LoginComponent {
     };
   
     this.authService.login(data).subscribe((jwtDto: any) => {
-      localStorage.setItem('refreshToken', jwtDto.refreshToken);
-      localStorage.setItem('token', jwtDto.token); 
+      console.log(jwtDto.refreshToken);
+      console.log(jwtDto.token)
+      this.RefreshTokens.accesstoken = jwtDto.token,
+      this.RefreshTokens.refreshToken = jwtDto.refreshToken
+      this.authService.RefreshTokens(this.RefreshTokens).subscribe((reponse) =>{
+        console.log(reponse),
+        this.authService.setToken(reponse.accesstoken)
+      } );
+
+     // localStorage.setItem('refreshToken', jwtDto.refreshToken);
+     // localStorage.setItem('token', jwtDto.token); 
       localStorage.setItem('role', jwtDto.role); 
       console.log('Đăng nhập thành công, role:', jwtDto.role);
-      if(jwtDto.role == 'user'){
-        console.log(this.authService.getInformation(jwtDto.token));
-        this.router.navigate([''])
-      }
-
+      
     });
   }
-
-//   processLogin(){
- 
-// this.authService.processlogin(this.loginBase.value).subscribe(result =>{
-//   if(result != null){
-//     this.responsedata = result;
-//     localStorage.setItem('refreshToken', this.responsedata.jwtToken);
-//     this.router.navigate([''])
-//   }
-// });
-
-//   }
-
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }

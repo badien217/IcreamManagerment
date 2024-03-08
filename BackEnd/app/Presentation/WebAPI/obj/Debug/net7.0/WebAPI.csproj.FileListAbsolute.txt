@@ -197,3 +197,10 @@ D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net
 D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
 D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\infrastructure.dll
 D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\infrastructure.pdb
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\MailKit.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\MimeKit.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll

@@ -5,6 +5,8 @@ using Application;
 using Mapper;
 using Microsoft.OpenApi.Models;
 using infrastructure;
+using Microsoft.AspNetCore.Authorization;
+using infrastructure.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
@@ -17,8 +19,6 @@ builder.Services.AddCors(options =>
             .AllowCredentials());
 });
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -29,20 +29,22 @@ var env = builder.Environment;
 builder.Configuration.SetBasePath(env.ContentRootPath).AddJsonFile("appsettings.json", optional: false);
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddApplication();
+builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddMapper();
+builder.Services.AddSingleton<TokenModels>();
+
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Project Ice Cream", Version = "v1", Description = "Ice Cream Api Client" });
-    c.AddSecurityDefinition("client", new OpenApiSecurityScheme()
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Youtube API", Version = "v1", Description = "iceCream Api" });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey,
-        Scheme = "client",
+        Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "this is project asp net core api"
+        Description = "'Bearer' this token "
     });
     c.AddSecurityRequirement(new OpenApiSecurityRequirement()
     {
@@ -52,7 +54,7 @@ builder.Services.AddSwaggerGen(c =>
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "client"
+                    Id = "Bearer"
                 }
             },
             Array.Empty<string>()
@@ -60,9 +62,19 @@ builder.Services.AddSwaggerGen(c =>
 
     });
 });
+builder.Services.Configure<AuthorizationOptions>(options =>
+{
+    options.AddPolicy("user", policy =>
+        policy.RequireClaim("role", "user"));
+
+    options.AddPolicy("admin", policy =>
+        policy.RequireClaim("role", "admin"));
+});
+
 
 
 var app = builder.Build();
+app.UseMiddleware<TokenMiddeware>();
 
 app.UseCors("AllowSpecificOrigin");
 
