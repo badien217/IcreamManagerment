@@ -21,9 +21,12 @@ namespace Application.Features.Orders.Command.UpdateOrder
         }
         public async Task<Unit> Handle(UpdateOrderCommandRequest request, CancellationToken cancellationToken)
         {
+            
             var orders = await unitOfWork.GetReadReponsitory<Order>().GetAsync(x => x.Id == request.Id && !x.IsDeleted);
             var map = mapper.Map<Order, UpdateOrderCommandRequest>(request); 
-            var orderdetail = await unitOfWork.GetReadReponsitory<OrderDetail>().GetAllAsync(x => x.OrderId == request.Id && !x.IsDeleted);
+            var orderdetail = await unitOfWork.GetReadReponsitory<OrderDetail>().GetAllAsync(x => x.OrderId == request.Id 
+            && !x.IsDeleted);
+
             await unitOfWork.GetWriteReponsitory<OrderDetail>().HardDeleteRangerAsync(orderdetail);
             foreach(var bookId in request.BookId)
                 await unitOfWork.GetWriteReponsitory<OrderDetail>().AddAsync(new() {
