@@ -25,7 +25,7 @@ namespace Application.Features.Books.queries.GetAll
 
         public async Task<IList<GetAllBookQueryReponse>> Handle(GetAllBookQueryRequest request, CancellationToken cancellationToken)
         {
-            var books = await _unitOfWork.GetReadReponsitory<Book>().GetAllAsync();
+            var books = await _unitOfWork.GetReadReponsitory<Book>().GetAllAsync(x => !x.IsDeleted);
             var map = _mapper.Map<GetAllBookQueryReponse, Book>(books);
             return map;
         }

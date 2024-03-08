@@ -37,7 +37,9 @@ namespace Application.Features.Auths.Command.Register
             {
                 Phone = request.phone,
                 subscriptionType = request.subscriptionType,
-                paymentOption = request.paymentOption
+                paymentOption = request.paymentOption,
+                paymentStatus = request.paymentStatus,
+                avatar  = request.avatar,
             };
             user.profile = userProfile;
             IdentityResult result = await userManager.CreateAsync(user, request.Password);

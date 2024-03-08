@@ -1,10 +1,7 @@
-﻿
-using Application.Bases;
-using Application.Features.Books.BookRule;
-using Application.Interfaces.AutoMapper;
+﻿using Application.Features.Books.BookRule;
+using Application.Features.Books.Exception;
 using Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using persistence.Interfaces.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -14,23 +11,27 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Books.command.CreateBook
 {
-    public class CreateBookCommandhandler : BaseHandler, IRequestHandler<CreateBookCommandRequest>
+    public class CreateBookCommandhandler : IRequestHandler<CreateBookCommandRequest,Unit>
     {
         public IUnitOfWork _unitOfWork;
-        public BookRules _bookRules;
+        public BookRules BookRules;
 
-     
-        public CreateBookCommandhandler(IUnitOfWork unitOfWork, IAutoMapper mapper, IHttpContextAccessor httpContextAccessor,BookRules bookRules) : base(mapper, unitOfWork, httpContextAccessor)
+        public CreateBookCommandhandler() { }
+        public CreateBookCommandhandler(IUnitOfWork unitOfWork,BookRules book)
         {
             _unitOfWork = unitOfWork;
-            _bookRules = bookRules;
-
+            BookRules = book;
         }
-        public async System.Threading.Tasks.Task Handle(CreateBookCommandRequest request, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<Unit> Handle(CreateBookCommandRequest request, CancellationToken cancellationToken)
         {
+            IList<Book> books = await _unitOfWork.GetReadReponsitory<Book>().GetAllAsync();
+            await BookRules.BookTitleMostNotBeSame(books, request.Title);
+            
             Book bookCustomer = new(request.Title, request.Author, request.PublishedDate, request.ImageUrl, request.Price);
             await _unitOfWork.GetWriteReponsitory<Book>().AddAsync(bookCustomer);
             await _unitOfWork.SaveAsync();
+            return Unit.Value;
+            
         }
     }
 }

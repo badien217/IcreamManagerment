@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Books.command.UpdateBook
 {
-    public class UpdateBookCommandReuquest : IRequest
+    public class UpdateBookCommandReuquest : IRequest<Unit>
     {
         public  int Id { get; set; }
 

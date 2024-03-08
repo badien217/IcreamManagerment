@@ -29,10 +29,8 @@ namespace Application.Features.Auths.Command.Revoke
         {
             User user = await userManager.FindByEmailAsync(request.Email);
             await authRules.EmailAddressShouldBeValid(user);
-
             user.RefreshToken = null;
             await userManager.UpdateAsync(user);
-
             return Unit.Value;
         }
     } 

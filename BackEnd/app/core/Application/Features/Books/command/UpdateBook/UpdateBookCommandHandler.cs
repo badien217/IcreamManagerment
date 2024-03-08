@@ -1,5 +1,7 @@
 ﻿
 using Application.Bases;
+using Application.Features.Books.BookRule;
+using Application.Features.Books.Exception;
 using Application.Interfaces.AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -13,26 +15,44 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Books.command.UpdateBook
 {
-    public class UpdateBookCommandHandler : BaseHandler,IRequestHandler<UpdateBookCommandReuquest>
+    public class UpdateBookCommandHandler : BaseHandler,IRequestHandler<UpdateBookCommandReuquest,Unit>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAutoMapper _autoMapper;
-        public UpdateBookCommandHandler( IAutoMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(mapper, unitOfWork, httpContextAccessor)
+        private readonly BookRules bookRule;
+        public UpdateBookCommandHandler( BookRules bookRules,IAutoMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(mapper, unitOfWork, httpContextAccessor)
         {
             this._unitOfWork = unitOfWork;
             this._autoMapper = mapper;
+            this.bookRule = bookRules;
         }
 
-        public async Task Handle(UpdateBookCommandReuquest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateBookCommandReuquest request, CancellationToken cancellationToken)
         {
+            IList<Book> books = await _unitOfWork.GetReadReponsitory<Book>().GetAllAsync();
+            bool isIdExists = bookRule.IsIdExists(books, request.Id);
 
-            var books = await _unitOfWork.GetReadReponsitory<Book>().GetAsync(x => x.Id == request.Id && !x.IsDeleted);
-            var map = _autoMapper.Map<Book, UpdateBookCommandReuquest>(request);
-          //  var BookRole = await _unitOfWork.GetReadReponsitory<Role>().GetAsync(x => x.Id == books.Id);
-           
-            await _unitOfWork.GetWriteReponsitory<Book>().UpdateAsync(books);
-            await _unitOfWork.SaveAsync();
+            if (isIdExists)
+            {
+                var bookToUpdate = await _unitOfWork.GetReadReponsitory<Book>().GetAsync(x => x.Id == request.Id && !x.IsDeleted);
 
+                if (bookToUpdate != null)
+                {
+                    var map = _autoMapper.Map<Book, UpdateBookCommandReuquest>(request);
+                    await _unitOfWork.GetWriteReponsitory<Book>().UpdateAsync(map);
+                    await _unitOfWork.SaveAsync();
+                }
+                else
+                {
+                    throw new BookTitleNotFound(); 
+                }
+            }
+            else
+            {
+                throw new BookTitleNotFound(); 
+            }
+
+            return Unit.Value;
         }
     }
 }

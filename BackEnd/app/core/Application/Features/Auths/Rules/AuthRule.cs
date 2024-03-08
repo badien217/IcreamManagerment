@@ -22,6 +22,11 @@ namespace Application.Features.Auths.Rules
             if (user is null || !checkPassword) throw new EmailOrPasswordShouldNotBeInvalidException();
             return Task.CompletedTask;
         }
+        public Task checkAccount(bool check)
+        {
+            if (check == true) throw new AccountNotFound();
+            return Task.CompletedTask;
+        }
         public Task RefreshTokenShouldNotBeExpired(DateTime? expiryDate)
         {
             if (expiryDate <= DateTime.Now) throw new RefreshTokenShouldNotBeExpiredException();

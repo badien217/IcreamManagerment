@@ -14,19 +14,19 @@ namespace Application.Features.Auths.Command.Register
                .NotEmpty()
                .MaximumLength(50)
                .MinimumLength(2)
-               .WithName("İsim Soyisim");
+               .WithName("");
 
             RuleFor(x => x.Email)
                 .NotEmpty()
                 .MaximumLength(60)
                 .EmailAddress()
                 .MinimumLength(8)
-                .WithName("E-posta Adresi");
+                .WithName("");
 
             RuleFor(x => x.Password)
                 .NotEmpty()
                 .MinimumLength(6)
-                .WithName("Parola");
+                .WithName("");
 
 
         }

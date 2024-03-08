@@ -25,6 +25,7 @@ namespace Application.Features.Auths.Command.Login
         private readonly IConfiguration configuration;
         private readonly ITokenServices tokenService;
         private readonly AuthRule authRules;
+        private readonly IUnitOfWork unitOfWork;
         
         public LoginCommandHandler(UserManager<User> userManager, IConfiguration configuration,
             ITokenServices tokenService, AuthRule authRules, IAutoMapper mapper, IUnitOfWork unitOfWork, 
@@ -34,6 +35,7 @@ namespace Application.Features.Auths.Command.Login
             this.configuration = configuration;
             this.tokenService = tokenService;
             this.authRules = authRules;
+            this.unitOfWork = unitOfWork;
            
         }
         public async Task<LoginCommandReponse> Handle(LoginCommandRequest request, CancellationToken cancellationToken)
@@ -42,9 +44,11 @@ namespace Application.Features.Auths.Command.Login
             bool checkPassword = await userManager.CheckPasswordAsync(user, request.Password);
 
             await authRules.EmailOrPasswordShouldNotBeInvalid(user, checkPassword);
-
+            
             IList<string> roles = await userManager.GetRolesAsync(user);
             string id = await userManager.GetUserIdAsync(user);
+            var userProfile = await unitOfWork.GetReadReponsitory<UserProfile>().GetAsync(x => x.UserId == new Guid(id));
+            await authRules.checkAccount(userProfile.IsDeleted);
             JwtSecurityToken token = await tokenService.CreateToken(user, roles);
             string refreshToken = tokenService.GenerateRefreshToken();
 

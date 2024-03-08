@@ -13,5 +13,7 @@ namespace Application.Features.Auths.Queries.GetProfileQueries
         public string subscriptionType { get;set; }
 
         public string paymentOption { get;set; }
+        public string paymentStatus { get;set; }
+        public string avatar { get; set; }
     }
 }
