@@ -16,6 +16,7 @@ namespace persistence.Context
         public AddDbContexts() { }
         public AddDbContexts(DbContextOptions options) : base(options) {
         } 
+       
         public DbSet<Book> Books { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Flavor> Flavor { get; set; }
@@ -23,7 +24,15 @@ namespace persistence.Context
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
-       
+        public DbSet<RecipeRating> ratings { get; set; }
+        public DbSet<BookRating> bookRating { get; set; }
+        public DbSet<userRecipe> userRecipes { get; set; }
+        public DbSet<RecipeRating> recipeRatings { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Faq> Faqs { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<cartDetails> CartDetails { get; set; }
+
         public DbSet<Step> Steps { get; set; }
        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
