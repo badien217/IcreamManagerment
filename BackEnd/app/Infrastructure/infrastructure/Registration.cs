@@ -1,5 +1,8 @@
-﻿using Application.Interfaces.Token;
-
+﻿using Application.Interfaces.RedisCache;
+using Application.Interfaces.SendMessage;
+using Application.Interfaces.Token;
+using infrastructure.RabbitMq;
+using infrastructure.RedisCache;
 using infrastructure.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -19,10 +22,10 @@ namespace infrastructure
         {
             services.Configure<TokenSetting>(configuration.GetSection("JWT"));
             services.AddTransient<ITokenServices, TokenServices>();
-            
-/*
+            services.AddScoped(typeof(ISendMessageRabbitMQ<>), typeof(SendMessage<>));
+
             services.Configure<RedisCacheSettings>(configuration.GetSection("RedisCacheSettings"));
-            services.AddTransient<IRedisCacheService, RedisCacheService>();*/
+            services.AddTransient<IRedisCache, RedisCacheService>();
 
             services.AddAuthentication(opt =>
             {
@@ -43,12 +46,12 @@ namespace infrastructure
                     ClockSkew = TimeSpan.Zero
                 };
             });
-            /*
+            
             services.AddStackExchangeRedisCache(opt =>
             {
                 opt.Configuration = configuration["RedisCacheSettings:ConnectionString"];
                 opt.InstanceName = configuration["RedisCacheSettings:InstanceName"];
-            });*/
+            });
         }
     }
 }
