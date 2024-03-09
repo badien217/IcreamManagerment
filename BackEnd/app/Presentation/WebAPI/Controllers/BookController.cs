@@ -13,6 +13,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace WebAPI.Controllers
 {
@@ -61,8 +62,8 @@ namespace WebAPI.Controllers
 
         public async Task<IActionResult> GetBookById(GetByIdCommandRequest request)
         {
-            await mediator.Send(request);
-            return Ok();
+            var reponser = await mediator.Send(request);
+            return StatusCode(StatusCodes.Status200OK, reponser);
         }
         [HttpGet]
 

@@ -1,7 +1,10 @@
 ﻿using Application.Features.Books.command.CreateBook;
 using Application.Features.Books.queries.GetAll;
 using Application.Features.Recipes.Command.CreateRecipes;
+using Application.Features.Recipes.Command.DeleteRecipes;
+using Application.Features.Recipes.Command.UpdateRecipes;
 using Application.Features.Recipes.Queries.GetAll;
+using Application.Features.Recipes.Queries.GetTotal;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +36,27 @@ namespace WebAPI.Controllers
         {
             await mediator.Send(requeste);
             return Ok();
+        }
+        [HttpPost]
+        public async Task<IActionResult> updateRecipes(UpdateRecipesCommandRequest requeste)
+        {
+            await mediator.Send(requeste);
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteRecipes(DeleteRecipesCommandRequest requeste)
+        {
+            await mediator.Send(requeste);
+            return Ok();
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult> GetTotal()
+        {
+            var response = await mediator.Send(new GetTotalRecipesRequest());
+            return Ok(response);
+
         }
     }
 }

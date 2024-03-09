@@ -2,6 +2,8 @@
 using Application.Features.Auths.Command.RefreshToken;
 using Application.Features.Auths.Command.Register;
 using Application.Features.Auths.Command.RegisterAdmin;
+using Application.Features.Auths.Command.Revoke;
+using Application.Features.Auths.Command.RevokeAll;
 using Application.Features.Auths.Queries.GetProfileQueries;
 using Application.Features.Feedbacks.Command.CreateFeedbacks;
 using Application.Features.Orders.Command.CreateOrder;
@@ -65,6 +67,19 @@ namespace WebAPI.Controllers
             }
 
             return Ok(new { message = "Thành công" }); 
+        }
+        [HttpPost]
+        public async Task<IActionResult> Revoke(RevokeCommandRequest request)
+        {
+            await mediator.Send(request);
+            return StatusCode(StatusCodes.Status200OK);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RevokeAll()
+        {
+            await mediator.Send(new RevokeAllCommandRequest());
+            return StatusCode(StatusCodes.Status200OK);
         }
     }
 }

@@ -204,3 +204,9 @@ D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net
 D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\MimeKit.dll
 D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
 D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\RabbitMQ.Client.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\MassTransit.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\MassTransit.Abstractions.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\MassTransit.RabbitMqTransport.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\Microsoft.Extensions.Diagnostics.HealthChecks.dll
+D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI\bin\Debug\net7.0\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
