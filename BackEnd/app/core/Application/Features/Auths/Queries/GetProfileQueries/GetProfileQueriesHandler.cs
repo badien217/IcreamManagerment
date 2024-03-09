@@ -46,8 +46,8 @@ namespace Application.Features.Auths.Queries.GetProfileQueries
                 response.Phone = userProfile.Phone;
                 response.subscriptionType = userProfile.subscriptionType;
                 response.paymentOption = userProfile.paymentOption;
-               // response.paymentStatus = userProfile.paymentStatus;
-                //response.avatar = userProfile.avatar;
+                response.paymentStatus = userProfile.paymentStatus;
+                response.avatar = userProfile.avatar;
             
             return response;
         }

@@ -29,7 +29,7 @@ namespace Application.Features.Books.queries.GetById
         }
         public async Task<GetByIdCommandReponse> Handle(GetByIdCommandRequest request, CancellationToken cancellationToken)
         {
-            var bookById = await unitOfWork.GetReadReponsitory<Book>().GetAsync(up => up.Id == request.id && !up.IsDeleted);
+            var bookById = await unitOfWork.GetReadReponsitory<Book>().GetAsync(up => up.Id == request.id );
             if(bookById is null)
             {
                 return new GetByIdCommandReponse();

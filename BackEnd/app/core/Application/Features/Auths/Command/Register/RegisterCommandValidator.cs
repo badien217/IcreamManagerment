@@ -9,26 +9,19 @@ namespace Application.Features.Auths.Command.Register
 {
     public class RegisterCommandValidator : AbstractValidator<RegisterCommandRequest>
     {
-        public RegisterCommandValidator() {
+        public RegisterCommandValidator()
+        {
             RuleFor(x => x.Fullname)
-               .NotEmpty()
-               .MaximumLength(50)
-               .MinimumLength(2)
-               .WithName("");
+                .NotEmpty()
+                .WithName("Fullname");
 
             RuleFor(x => x.Email)
                 .NotEmpty()
-                .MaximumLength(60)
-                .EmailAddress()
-                .MinimumLength(8)
-                .WithName("");
+                .WithName("Email");
 
             RuleFor(x => x.Password)
                 .NotEmpty()
-                .MinimumLength(6)
-                .WithName("");
-
-
+                .WithName("Password");
         }
     }
 }
