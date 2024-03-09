@@ -1,4 +1,5 @@
-﻿using Application.Features.Books.BookRule;
+﻿using Application.Bases;
+using Application.Features.Books.BookRule;
 using Application.Interfaces.AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.RecipesRating.Command.CreateRecipesRating
 {
-    public class CreateRecipesRatingHandler : IRequestHandler<CreateRecipesRatingRequest, Unit>
+    public class CreateRecipesRatingHandler : BaseHandler,IRequestHandler<CreateRecipesRatingRequest, Unit>
     {
         public readonly IUnitOfWork _unitOfWork;
         public CreateRecipesRatingHandler(IUnitOfWork unitOfWork, IAutoMapper mapper, IHttpContextAccessor httpContextAccessor, BookRules bookRules) : base(mapper, unitOfWork, httpContextAccessor)

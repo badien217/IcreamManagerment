@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Interfaces.SendMessage;
 
 namespace Application.Features.Orders.Command.CreateOrder
 {
@@ -17,7 +18,7 @@ namespace Application.Features.Orders.Command.CreateOrder
     {
         public IUnitOfWork _unitOfWork;
         public BookRules _bookRules;
-
+        private readonly ISendMessageRabbitMQ<Order> _messagePublisher;
 
         public CreateOrderCommandHandler(IUnitOfWork unitOfWork, IAutoMapper mapper, IHttpContextAccessor httpContextAccessor, BookRules bookRules) : base(mapper, unitOfWork, httpContextAccessor)
         {
@@ -42,6 +43,9 @@ namespace Application.Features.Orders.Command.CreateOrder
                     });
                     
                 }
+                if (_messagePublisher != null)
+                    _messagePublisher.SendMessage(order);
+
             await unitOfWork.SaveAsync();
             }
             return Unit.Value;
