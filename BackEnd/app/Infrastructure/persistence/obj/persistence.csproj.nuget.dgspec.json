@@ -103,6 +103,10 @@
               "target": "Package",
               "version": "[9.29.1, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "System.Globalization": {
               "target": "Package",
               "version": "[4.3.0, )"
@@ -226,6 +230,10 @@
             "SendGrid": {
               "target": "Package",
               "version": "[9.29.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
@@ -359,6 +367,10 @@
             "SendGrid": {
               "target": "Package",
               "version": "[9.29.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

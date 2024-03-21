@@ -103,6 +103,10 @@
               "target": "Package",
               "version": "[9.29.1, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "System.Globalization": {
               "target": "Package",
               "version": "[4.3.0, )"
@@ -232,6 +236,10 @@
               "target": "Package",
               "version": "[9.29.1, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[7.2.0, )"
@@ -352,6 +360,10 @@
               "target": "Package",
               "version": "[9.29.1, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[7.2.0, )"
@@ -464,6 +476,10 @@
               "target": "Package",
               "version": "[7.0.14, )"
             },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
             "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
               "version": "[8.0.1, )"
@@ -480,6 +496,10 @@
               "target": "Package",
               "version": "[9.29.1, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "StackExchange.Redis": {
               "target": "Package",
               "version": "[2.7.27, )"
@@ -491,6 +511,10 @@
             "System.Security.Claims": {
               "target": "Package",
               "version": "[4.3.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[8.0.3, )"
             }
           },
           "imports": [
@@ -616,6 +640,10 @@
             "SendGrid": {
               "target": "Package",
               "version": "[9.29.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
@@ -763,6 +791,10 @@
             "SendGrid": {
               "target": "Package",
               "version": "[9.29.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -8,6 +8,7 @@ using Application.Features.Orders.Queries.GetOrderByDate;
 using Application.Features.Orders.Queries.GetOrderById;
 using Application.Features.Orders.Queries.GetTotal;
 using Application.Features.RecipesRating.Queries.GetByIdRecipesRating;
+using Application.Interfaces.SendMessage;
 using Azure.Core;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -21,10 +22,12 @@ namespace WebAPI.Controllers
     {
         public readonly IMediator mediator;
         private readonly IAuthorizationService authorizationService;
-        public OrderController(IMediator mediator, IAuthorizationService authorizationService)
+        private readonly ISendMessageRabbitMQ sendMessageRabbitMQ;
+        public OrderController(IMediator mediator, IAuthorizationService authorizationService, ISendMessageRabbitMQ sendMessageRabbitMQ)
         {
             this.mediator = mediator;
             this.authorizationService = authorizationService;
+            this.sendMessageRabbitMQ = sendMessageRabbitMQ;
         }
         [HttpGet]
 
@@ -37,8 +40,9 @@ namespace WebAPI.Controllers
         [HttpPost]
 
         public async Task<IActionResult> CreateOrder(CreateOrderCommandRequest requeste)
-        {
+        {      
             await mediator.Send(requeste);
+
             return Ok();
         }
         [HttpPost]
