@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using infrastructure.Model;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
@@ -71,8 +72,9 @@ builder.Services.Configure<AuthorizationOptions>(options =>
         policy.RequireClaim("role", "admin"));
 });
 
-
-
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration).CreateLogger();
+builder.Host.UseSerilog();
 var app = builder.Build();
 app.UseMiddleware<TokenMiddeware>();
 
@@ -85,7 +87,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
