@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Interfaces.RedisCache;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,5 +13,7 @@ namespace Application.Features.Books.queries.GetById
     {
         [DefaultValue(1)]
         public int id {  get; set; }
+
+        
     }
 }

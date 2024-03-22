@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Interfaces.RedisCache;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Faqs.Queries.GetAllFaq
 {
-    public class GetAllFaqRequest :IRequest<IList<GetAllFaqReponse>>
+    public class GetAllFaqRequest : IRequest<IList<GetAllFaqReponse>>, ICacheableQuery
     {
+        public string CacheKey => "GetAllFaq";
+
+        public double CacheTime => 60;
     }
 }

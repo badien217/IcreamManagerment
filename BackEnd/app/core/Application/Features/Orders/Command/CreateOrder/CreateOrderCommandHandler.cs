@@ -18,12 +18,13 @@ namespace Application.Features.Orders.Command.CreateOrder
     {
         public IUnitOfWork _unitOfWork;
         public BookRules _bookRules;
-        private readonly ISendMessageRabbitMQ<Order> _messagePublisher;
+        private readonly ISendMessageRabbitMQ _messagePublisher;
 
-        public CreateOrderCommandHandler(IUnitOfWork unitOfWork, IAutoMapper mapper, IHttpContextAccessor httpContextAccessor, BookRules bookRules) : base(mapper, unitOfWork, httpContextAccessor)
+        public CreateOrderCommandHandler(IUnitOfWork unitOfWork, IAutoMapper mapper, IHttpContextAccessor httpContextAccessor, BookRules bookRules,ISendMessageRabbitMQ sendMessageRabbitMQ) : base(mapper, unitOfWork, httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _bookRules = bookRules;
+            _messagePublisher = sendMessageRabbitMQ;
 
         }
 
@@ -31,8 +32,10 @@ namespace Application.Features.Orders.Command.CreateOrder
         {
             Order order = new(request.Name,request.Email,request.Phone,request.Address,request.Amount,
                 request.PaymentOption,request.TransactionStatus,request.OrderDate);
+            _messagePublisher.SendMessage<Order>(order);
             await unitOfWork.GetWriteReponsitory<Order>().AddAsync(order);
-            if(await unitOfWork.SaveAsync() > 0)
+            
+            if (await unitOfWork.SaveAsync() > 0)
             {
                 foreach (var bookId in request.BookId)
                 {
@@ -43,9 +46,7 @@ namespace Application.Features.Orders.Command.CreateOrder
                     });
                     
                 }
-                if (_messagePublisher != null)
-                    _messagePublisher.SendMessage(order);
-
+               
             await unitOfWork.SaveAsync();
             }
             return Unit.Value;

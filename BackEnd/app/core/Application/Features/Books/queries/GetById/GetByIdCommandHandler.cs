@@ -1,6 +1,7 @@
 ﻿using Application.Bases;
 using Application.Features.Auths.Rules;
 using Application.Interfaces.AutoMapper;
+using Application.Interfaces.RedisCache;
 using Application.Interfaces.Token;
 using Domain.Entities;
 using MediatR;
@@ -16,8 +17,9 @@ namespace Application.Features.Books.queries.GetById
         private readonly IConfiguration configuration;
         private readonly ITokenServices tokenService;
         private readonly AuthRule authRules;
+        private readonly IRedisCache _Cache;
 
-        public GetByIdCommandHandler(IConfiguration configuration,
+        public GetByIdCommandHandler(IConfiguration configuration, IRedisCache Cache,
             ITokenServices tokenService, AuthRule authRules, IAutoMapper mapper, IUnitOfWork unitOfWork,
             IHttpContextAccessor httpContextAccessor) : base(mapper, unitOfWork, httpContextAccessor)
         {
@@ -25,11 +27,13 @@ namespace Application.Features.Books.queries.GetById
             this.configuration = configuration;
             this.tokenService = tokenService;
             this.authRules = authRules;
-
+            this._Cache = Cache;
         }
         public async Task<GetByIdCommandReponse> Handle(GetByIdCommandRequest request, CancellationToken cancellationToken)
         {
             var bookById = await unitOfWork.GetReadReponsitory<Book>().GetAsync(up => up.Id == request.id );
+           
+            
             if(bookById is null)
             {
                 return new GetByIdCommandReponse();
@@ -43,4 +47,4 @@ namespace Application.Features.Books.queries.GetById
             return reponse;
         }
     }
-}
+} 

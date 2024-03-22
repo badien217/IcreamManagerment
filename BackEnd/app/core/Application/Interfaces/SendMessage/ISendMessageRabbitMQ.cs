@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces.SendMessage
 {
-    public interface ISendMessageRabbitMQ<T> where T : class,IEntityBase,new()
+    public interface ISendMessageRabbitMQ
     {
         void SendMessage<T>(T message);
     }
