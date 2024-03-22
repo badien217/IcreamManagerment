@@ -22,7 +22,7 @@ namespace infrastructure
         {
             services.Configure<TokenSetting>(configuration.GetSection("JWT"));
             services.AddTransient<ITokenServices, TokenServices>();
-            services.AddScoped(typeof(ISendMessageRabbitMQ<>), typeof(SendMessage<>));
+            services.AddScoped<ISendMessageRabbitMQ, SendMessage>();
 
             services.Configure<RedisCacheSettings>(configuration.GetSection("RedisCacheSettings"));
             services.AddTransient<IRedisCache, RedisCacheService>();

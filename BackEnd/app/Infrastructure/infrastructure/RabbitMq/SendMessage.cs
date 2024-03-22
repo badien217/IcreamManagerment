@@ -6,28 +6,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace infrastructure.RabbitMq
 {
-    public class SendMessage<T> : ISendMessageRabbitMQ<T> where T : class, IEntityBase, new()
+    public class SendMessage : ISendMessageRabbitMQ 
     {
-        void ISendMessageRabbitMQ<T>.SendMessage<T1>(T1 message)
+        void ISendMessageRabbitMQ.SendMessage<T>(T message)
         {
-            var factory = new ConnectionFactory
-            {
-                HostName = "localhost",
-                UserName = "guest",
-                Password ="guest"
-            };
-            var connection = factory.CreateConnection();
-            using var channel = connection.CreateModel();
-            channel.QueueDeclare("e_project3", exclusive: false);
+            ConnectionFactory factory = new ConnectionFactory();
 
-            var json = JsonConvert.SerializeObject(message);
-            var body = Encoding.UTF8.GetBytes(json);
 
-            channel.BasicPublish(exchange: "", routingKey: "e_project3", body: body);
+            factory.HostName = "localhost";
+            factory.Port = 5672;
+            factory.UserName = "admin";
+            factory.Password = "badien217";
+
+            factory.VirtualHost = "/";
+
+            var con = factory.CreateConnection();
+            using var channel = con.CreateModel();
+            channel.QueueDeclare("order", durable: true, exclusive: false);
+            var jsonString = System.Text.Json.JsonSerializer.Serialize(message);
+            var body = Encoding.UTF8.GetBytes(jsonString);
+            channel.BasicPublish("", "order", body: body);
         }
     }
 }
