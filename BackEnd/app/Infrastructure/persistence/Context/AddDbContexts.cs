@@ -18,6 +18,7 @@ namespace persistence.Context
         } 
        
         public DbSet<Book> Books { get; set; }
+        public DbSet<Otp> Otp { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Flavor> Flavor { get; set; }
         public DbSet<IceCream> IceCreams { get;set; }

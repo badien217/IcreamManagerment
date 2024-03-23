@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSteps(CreateFeedbackCommandRequest requeste)
+        public async Task<IActionResult> CreateSteps([FromForm] CreateFeedbackCommandRequest requeste)
         {
             await mediator.Send(requeste);
             return Ok();
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> UpdateBook(UpdateStepsCommandRequest requeste)
+        public async Task<IActionResult> UpdateBook([FromForm]UpdateStepsCommandRequest requeste)
         {
             await mediator.Send(requeste);
             return Ok();
