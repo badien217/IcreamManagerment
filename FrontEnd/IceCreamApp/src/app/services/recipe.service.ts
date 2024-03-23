@@ -4,7 +4,7 @@ import { Step } from '../interfaces/step';
 import { Recipe } from '../interfaces/recipe';
 import { HttpClient } from '@angular/common/http';
 
-const baseUrl = 'http://localhost:5175/api/Recipes';
+const baseUrl = 'http://localhost:4200/api/Recipes';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +26,11 @@ export class RecipeService {
   }
 
   updateRecipe(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    return this.http.post(`${baseUrl}/${id}`, data);
   }
 
   deleteRecipe(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+    return this.http.post(`${baseUrl}/${id}`,id);
   }
 
   deleteAll(): Observable<any> {
@@ -51,10 +51,10 @@ export class RecipeService {
   }
 
   addStep(step: any): Observable<any> {
-    return this.http.post(`http://localhost:5175/api/Steps`, step);
+    return this.http.post(`http://localhost:4200/api/Steps`, step);
   }
 
   addIngredient(ingredient: any): Observable<any> {
-    return this.http.post(`http://localhost:5175/api/Ingredients`, ingredient);
+    return this.http.post(`http://localhost:4200/api/Ingredients`, ingredient);
   }
 }

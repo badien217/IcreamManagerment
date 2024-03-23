@@ -1,0 +1,46 @@
+2024-03-24 03:36:00.267 +07:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-03-24 03:36:00.337 +07:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'Order'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-03-24 03:36:01.880 +07:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-03-24 03:36:01.902 +07:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-03-24 03:36:01.903 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-03-24 03:36:01.905 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-03-24 03:36:01.937 +07:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-03-24 03:36:01.952 +07:00 [INF] Applying migration '20240323202558_upate7'.
+2024-03-24 03:36:02.019 +07:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240323202558_upate7', N'7.0.14');
+2024-03-24 03:36:02.024 +07:00 [INF] Applying migration '20240323203148_update8'.
+2024-03-24 03:36:02.093 +07:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Otp] (
+    [Id] int NOT NULL IDENTITY,
+    [name] nvarchar(max) NOT NULL,
+    [OtpCode] nvarchar(max) NOT NULL,
+    [IsUsed] bit NOT NULL,
+    [ExpirationTime] datetime2 NOT NULL,
+    [IsDeleted] bit NOT NULL,
+    [CreatedDate] datetime2 NOT NULL,
+    CONSTRAINT [PK_Otp] PRIMARY KEY ([Id])
+);
+2024-03-24 03:36:02.095 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240323203148_update8', N'7.0.14');
+2024-03-24 03:49:28.343 +07:00 [INF] User profile is available. Using 'C:\Users\Dien Bu's Cu's\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-24 03:49:28.883 +07:00 [INF] Now listening on: http://localhost:4200
+2024-03-24 03:49:28.887 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-24 03:49:28.888 +07:00 [INF] Hosting environment: Development
+2024-03-24 03:49:28.889 +07:00 [INF] Content root path: D:\eProject_team_3\EProject_team_3\BackEnd\app\Presentation\WebAPI
+2024-03-24 03:49:29.528 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:4200/swagger/index.html - -
+2024-03-24 03:49:30.725 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:4200/_vs/browserLink - -
+2024-03-24 03:49:30.730 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:4200/swagger/index.html - - - 200 - text/html;charset=utf-8 1202.4955ms
+2024-03-24 03:49:30.740 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:4200/_framework/aspnetcore-browser-refresh.js - -
+2024-03-24 03:49:30.743 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:4200/_framework/aspnetcore-browser-refresh.js - - - 200 12344 application/javascript;+charset=utf-8 3.0047ms
+2024-03-24 03:49:30.751 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:4200/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 25.6096ms
+2024-03-24 03:49:30.962 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:4200/swagger/v1/swagger.json - -
+2024-03-24 03:49:31.157 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:4200/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 195.3097ms

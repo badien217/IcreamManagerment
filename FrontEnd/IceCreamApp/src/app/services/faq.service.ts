@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Faq } from '../interfaces/faq';
 import { HttpClient } from '@angular/common/http';
 
-const baseUrl = 'http://localhost:5175/api/CommonQuestions';
+const baseUrl = 'http://localhost:4200/api/faq';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +25,11 @@ export class FaqService {
   }
 
   updateFaq(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    return this.http.post(`${baseUrl}/${id}`, data);
   }
 
   deleteFaq(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+    return this.http.post(`${baseUrl}/${id}`,id);
   }
 
   deleteAll(): Observable<any> {

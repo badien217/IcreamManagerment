@@ -4,7 +4,7 @@ import { Product } from '../interfaces/product';
 import { Observable } from 'rxjs';
 import { Flavor } from '../interfaces/flavor';
 
-const baseUrl = 'http://localhost:5175/api';
+const baseUrl = 'http://localhost:4200/api';
 
 @Injectable({
   providedIn: 'root'

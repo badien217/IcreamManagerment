@@ -32,13 +32,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRecipes(CreateRecipesCommandRequest requeste)
+        public async Task<IActionResult> CreateRecipes([FromForm]CreateRecipesCommandRequest requeste)
         {
             await mediator.Send(requeste);
             return Ok();
         }
         [HttpPost]
-        public async Task<IActionResult> updateRecipes(UpdateRecipesCommandRequest requeste)
+        public async Task<IActionResult> updateRecipes([FromForm] UpdateRecipesCommandRequest requeste)
         {
             await mediator.Send(requeste);
             return Ok();

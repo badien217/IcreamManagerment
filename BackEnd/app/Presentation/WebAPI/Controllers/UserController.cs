@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateProfile(UpdateProfileUserRequest requeste)
+        public async Task<IActionResult> UpdateProfile([FromForm]UpdateProfileUserRequest requeste)
         {
             await mediator.Send(requeste);
             return Ok();

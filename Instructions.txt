@@ -1,0 +1,7 @@
+RABBITMQ:
+Please open the terminal and enter the command line: docker run -d --hostname my-rabbitmq-server --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+
+REDIS CACHE :please install app redisInsignt on microstore
+Please open the Redis-x64-3.0.504.zip file to extract it, then run it locally to host Redis
+
+Database:Please open the backend and input the complete database of your WebAPI into the addsetting.json -> connectDefault and then input command "update-database" in order to create database 
