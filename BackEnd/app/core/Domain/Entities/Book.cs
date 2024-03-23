@@ -15,8 +15,9 @@ namespace Domain.Entities
         public DateTime PublishedDate { get; set; }
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
+        public int Quantity { get; set; }
         public Book() { }
-        public Book(string title, string author, DateTime publishedDate, string imageUrl, decimal price)
+       public Book(string title, string author, DateTime publishedDate, string imageUrl, decimal price)
         {
             Title = title;
             Author = author;
