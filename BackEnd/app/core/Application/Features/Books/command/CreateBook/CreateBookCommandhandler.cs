@@ -27,7 +27,18 @@ namespace Application.Features.Books.command.CreateBook
             IList<Book> books = await _unitOfWork.GetReadReponsitory<Book>().GetAllAsync();
             await BookRules.BookTitleMostNotBeSame(books, request.Title);
             
-            Book bookCustomer = new(request.Title, request.Author, request.PublishedDate, request.ImageUrl, request.Price);
+            var bookCustomer = new Book {Title = request.Title,Author = request.Author,PublishedDate= request.PublishedDate,Price = request.Price,Quantity = request.quatity };
+            if (request.ImageUrl.Length > 0)
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "image", request.ImageUrl.FileName);
+                using (var stream = System.IO.File.Create(path))
+                {
+                    await request.ImageUrl.CopyToAsync(stream);
+
+
+                }
+                bookCustomer.ImageUrl = "/image/" + request.ImageUrl.FileName;
+            }
             await _unitOfWork.GetWriteReponsitory<Book>().AddAsync(bookCustomer);
             await _unitOfWork.SaveAsync();
             return Unit.Value;

@@ -29,6 +29,17 @@ namespace Application.Features.Auths.Command.Profile.UpdateProfile.UpdateProfile
         {
             UserProfile profile = await unitOfWork.GetReadReponsitory<UserProfile>().GetAsync(x => x.UserId == request.UserId && !x.IsDeleted);
             var map = _autoMapper.Map<UserProfile, UpdateProfileUserRequest>(request);
+            if (request.avatar.Length > 0)
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "image", request.avatar.FileName);
+                using (var stream = System.IO.File.Create(path))
+                {
+                    await request.avatar.CopyToAsync(stream);
+
+
+                }
+               map.avatar = "/image/" + request.avatar.FileName;
+            }
             await _unitOfWork.GetWriteReponsitory<UserProfile>().UpdateAsync(map);
             await _unitOfWork.SaveAsync();
             return Unit.Value;

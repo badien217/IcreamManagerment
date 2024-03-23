@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,6 @@ namespace Application.Features.Auths.Command.Profile.UpdateProfile.UpdateProfile
         public string subscriptionType { get; set; }
         public string paymentOption { get; set; }
         public string paymentStatus { get; set; }
-        public string avatar { get; set; }
+        public IFormFile avatar { get; set; }
     }
 }

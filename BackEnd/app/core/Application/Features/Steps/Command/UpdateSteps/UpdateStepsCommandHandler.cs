@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Steps.Command.UpdateSteps
 {
-    public class UpdateStepsCommandHandler : IRequestHandler<UpdateStepsCommandRequest>
+    public class UpdateStepsCommandHandler : IRequestHandler<UpdateStepsCommandRequest,Unit>
     {
 
         private readonly IUnitOfWork _unitOfWork;
@@ -22,11 +22,24 @@ namespace Application.Features.Steps.Command.UpdateSteps
             _autoMapper = autoMapper;
         }
 
-        public async Task Handle(UpdateStepsCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateStepsCommandRequest request, CancellationToken cancellationToken)
         {
-            var step = await _unitOfWork.GetReadReponsitory<Step>().GetAsync(x => x.Id == request.Id && !x.IsDeleted); 
+            var step = await _unitOfWork.GetReadReponsitory<Step>().GetAsync(x => x.Id == request.Id && !x.IsDeleted);
+            var map = _autoMapper.Map<Step, UpdateStepsCommandRequest>(request);
+            if (request.ImageUrl.Length > 0)
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "image", request.ImageUrl.FileName);
+                using (var stream = System.IO.File.Create(path))
+                {
+                    await request.ImageUrl.CopyToAsync(stream);
+
+
+                }
+                step.ImageUrl = "/image/" + request.ImageUrl.FileName;
+            }
             await _unitOfWork.GetWriteReponsitory<Step>().UpdateAsync(step);
             await _unitOfWork.SaveAsync();
+            return Unit.Value;
         }
     }
 }

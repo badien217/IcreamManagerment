@@ -29,7 +29,7 @@ namespace Application.Features.Books.command.UpdateBook
 
         public async Task<Unit> Handle(UpdateBookCommandReuquest request, CancellationToken cancellationToken)
         {
-            IList<Book> books = await _unitOfWork.GetReadReponsitory<Book>().GetAllAsync();
+            var books = await _unitOfWork.GetReadReponsitory<Book>().GetAllAsync();
             bool isIdExists = bookRule.IsIdExists(books, request.Id);
 
             if (isIdExists)
@@ -39,6 +39,17 @@ namespace Application.Features.Books.command.UpdateBook
                 if (bookToUpdate != null)
                 {
                     var map = _autoMapper.Map<Book, UpdateBookCommandReuquest>(request);
+                    if (request.ImageUrl.Length > 0)
+                    {
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "image", request.ImageUrl.FileName);
+                        using (var stream = System.IO.File.Create(path))
+                        {
+                            await request.ImageUrl.CopyToAsync(stream);
+
+
+                        }
+                        map.ImageUrl = "/image/" + request.ImageUrl.FileName;
+                    }
                     await _unitOfWork.GetWriteReponsitory<Book>().UpdateAsync(map);
                     await _unitOfWork.SaveAsync();
                 }
