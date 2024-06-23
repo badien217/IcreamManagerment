@@ -11,8 +11,8 @@ namespace Application.Interfaces.Token
 {
     public interface ITokenServices
     {
-        Task<JwtSecurityToken> CreateToken(User user, IList<string> roles);
-        string GenerateRefreshToken();
-        ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token);
+        Task<JwtSecurityToken> CreateToken(User user, IList<string> roles);//Mục đích của phương thức này là tạo ra một mã thông báo bảo mật JWT
+        string GenerateRefreshToken();//Mục đích của phương thức này là tạo ra một mã thông báo làm mới (refresh token)
+        ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token);//Mục đích của phương thức này là lấy ra thông tin xác thực (principal) từ một mã thông báo đã hết hạn
     }
 }

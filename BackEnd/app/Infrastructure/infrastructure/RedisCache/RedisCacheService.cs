@@ -23,11 +23,20 @@ namespace infrastructure.RedisCache
             redisConnection = ConnectionMultiplexer.Connect(opt);
             database = redisConnection.GetDatabase();
         }
-        public async Task<T> GetAsync<T>(string key)
+        public async Task<T> GetAsync<T>(object key)
         {
-            var value = await database.StringGetAsync(key);
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+
+            var stringKey = key.ToString(); 
+
+            var value = await database.StringGetAsync(stringKey);
             if (value.HasValue)
+            {
                 return JsonConvert.DeserializeObject<T>(value);
+            }
 
             return default;
         }

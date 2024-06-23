@@ -295,6 +295,9 @@
             "projectReferences": {
               "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Application\\Application.csproj": {
                 "projectPath": "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Application\\Application.csproj"
+              },
+              "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Domain\\Domain.csproj"
               }
             }
           }

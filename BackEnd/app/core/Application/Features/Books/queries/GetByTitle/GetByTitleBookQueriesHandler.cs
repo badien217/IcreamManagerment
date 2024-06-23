@@ -2,6 +2,7 @@
 using Application.Features.Auths.Rules;
 using Application.Features.Books.BookRule;
 using Application.Features.Books.Exception;
+using Application.Features.Books.queries.GetById;
 using Application.Interfaces.AutoMapper;
 using Application.Interfaces.RedisCache;
 using Application.Interfaces.Token;
@@ -40,7 +41,7 @@ namespace Application.Features.Books.queries.GetByTitle
         }
         public async Task<GetByTitleBookQueriesReponse> Handle(GetByTitleBookQueriesRequest request, CancellationToken cancellationToken)
         {
-            var reponse = new GetByTitleBookQueriesReponse();
+            /*var reponse = new GetByTitleBookQueriesReponse();
             IList<Book> boolAll = await unitOfWork.GetReadReponsitory<Book>().GetAllAsync();
             GetByTitleBookQueriesReponse bookTitleFromRedis = await _Cache.GetAsync<GetByTitleBookQueriesReponse>(request.Title);
 
@@ -71,7 +72,11 @@ namespace Application.Features.Books.queries.GetByTitle
                 new BookTitleNotFound();
             }
             
-            return reponse;
+            return reponse;*/
+            var book = await _Cache.GetAsync<GetByTitleBookQueriesReponse>(request.Title);
+            string key = "GetAllBook";
+            var map = mapper.Map<GetByTitleBookQueriesReponse>(this._Cache.SetAsync(key, book));
+            return map;
         }
        
     }

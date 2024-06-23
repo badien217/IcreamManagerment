@@ -27,7 +27,6 @@ namespace Application.Behevior
                 .Select(x => x.First())
                 .Where(f => f != null)
                 .ToList();
-
             if (failtures.Any())
                 throw new ValidationException(failtures);
 

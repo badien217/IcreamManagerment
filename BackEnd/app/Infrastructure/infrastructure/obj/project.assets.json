@@ -5743,6 +5743,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "Application >= 1.0.0",
+      "Domain >= 1.0.0",
       "FluentValidation >= 11.9.0",
       "FluentValidation.AspNetCore >= 11.3.0",
       "FluentValidation.DependencyInjectionExtensions >= 11.9.0",
@@ -5799,6 +5800,9 @@
           "projectReferences": {
             "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Application\\Application.csproj": {
               "projectPath": "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Application\\Application.csproj"
+            },
+            "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\eProject_team_3\\EProject_team_3\\BackEnd\\app\\core\\Domain\\Domain.csproj"
             }
           }
         }

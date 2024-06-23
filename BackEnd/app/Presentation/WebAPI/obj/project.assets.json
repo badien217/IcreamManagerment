@@ -2188,6 +2188,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Application": "1.0.0",
+          "Domain": "1.0.0",
           "FluentValidation": "11.9.0",
           "FluentValidation.AspNetCore": "11.3.0",
           "FluentValidation.DependencyInjectionExtensions": "11.9.0",
