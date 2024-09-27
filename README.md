@@ -52,7 +52,7 @@ And design partten
 ![image](https://github.com/user-attachments/assets/62406007-fef5-49ef-9d23-6656ecf425d9)
 
 
-Some technical was used to this project :
+
 
 
 
