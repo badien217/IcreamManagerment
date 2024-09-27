@@ -43,6 +43,16 @@ Finally ,you enjoy the Admin page with many complex handling
 
 ![image](https://github.com/user-attachments/assets/426912fa-f2ee-4e78-9305-05a22fdd2f42)
 
+With BackEND 
+Architect of project was CQRS with divieding between query and command
+![image](https://github.com/user-attachments/assets/e98d4aa9-2ff0-445f-8f44-ea2c5975d601)
+
+And design partten
+
+![image](https://github.com/user-attachments/assets/62406007-fef5-49ef-9d23-6656ecf425d9)
+
+
+Some technical was used to this project :
 
 
 
