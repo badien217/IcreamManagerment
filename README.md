@@ -65,6 +65,4 @@ The backend architecture is built on the **CQRS pattern**, separating query and 
 
 Our project leverages industry-standard design patterns for reliability, maintainability, and scalability. Every feature has been crafted with care, following best practices in software engineering.
 
-## 🎉 Get Started
 
-Ready to dive in? Enjoy a seamless, feature-rich experience with **Ice Cream Web**. Whether you're a shopper or an admin, the platform is designed to make your experience delightful!
